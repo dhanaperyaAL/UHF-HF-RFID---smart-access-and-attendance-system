@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="ExecuteReportsForm.ExecuteReportsForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
+             d:DesignHeight="500" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- API URL Input with HTTP Method Selection -->
+        <GroupBox Grid.Row="0" Header="API Request" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBox x:Name="txtApiUrl" Width="400" Height="30" Margin="5"
+                         Text="https://portal.psgrkcw.ac.in/StaffStudDetailsAPI/api/master/ExecuteReports/ExecuteReports"/>
+                <ComboBox x:Name="cmbHttpMethod" Width="100" Height="30" Margin="5" SelectedIndex="1">
+                    <ComboBoxItem Content="GET"/>
+                    <ComboBoxItem Content="POST"/>
+                </ComboBox>
+                <Button x:Name="btnGo" Content="Go" Width="80" Height="30" Margin="5" Click="BtnGo_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Request Body -->
+        <GroupBox Grid.Row="1" Header="Request Body (JSON)" Margin="10">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <RichTextBox x:Name="rtbRequestBody" Width="600" Height="150" Margin="5">
+                    <FlowDocument>
+                        <Paragraph>
+                            {"reportname": "User Details", "filterdetails": "[{}]", "executedby": 1301617}
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Execute Button -->
+        <GroupBox Grid.Row="2" Header="Actions" Margin="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                <Button x:Name="btnExecute" Content="Execute" Width="120" Height="30" Margin="5"
+                        Click="BtnExecute_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Response Display -->
+        <GroupBox Grid.Row="3" Header="Response" Margin="10">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBox x:Name="txtResponse" Width="600" Height="200" Margin="5"
+                         TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>
